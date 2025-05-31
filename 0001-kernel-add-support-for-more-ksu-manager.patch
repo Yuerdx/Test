@@ -1,0 +1,30 @@
+From 3deca3e4bee6a480b0effbf4791818d6c4cd38c8 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E3=80=86Ei?=
+ <197677662+Norikimika@users.noreply.github.com>
+Date: Sat, 31 May 2025 08:54:57 +0800
+Subject: [PATCH] kernel: add support for more ksu manager
+
+---
+ KernelSU/kernel/apk_sign.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/KernelSU/kernel/apk_sign.c b/KernelSU/kernel/apk_sign.c
+index ba8b73f2..0c2fa63a 100644
+--- a/KernelSU/kernel/apk_sign.c
++++ b/KernelSU/kernel/apk_sign.c
+@@ -316,5 +316,10 @@ module_param_cb(ksu_debug_manager_uid, &expected_size_ops,
+ 
+ bool is_manager_apk(char *path)
+ {
+-	return check_v2_signature(path, EXPECTED_SIZE, EXPECTED_HASH);
++	return (check_v2_signature(path, 0x033b, "c371061b19d8c7d7d6133c6a9bafe198fa944e50c1b31c9d8daa8d7f1fc2d2d6") // https://github.com/tiann/KernelSU
++	|| check_v2_signature(path, 0x3e6, "79e590113c4c4c0c222978e413a5faa801666957b1212a328e46c00c69821bf7") // https://github.com/rifsxd/KernelSU-Next
++	|| check_v2_signature(path, 0x396, "f415f4ed9435427e1fdf7f1fccd4dbc07b3d6b8751e4dbcec6f19671f427870b") // https://github.com/rsuntk/KernelSU
++	|| check_v2_signature(path, 0x363, "4359c171f32543394cbc23ef908c4bb94cad7c8087002ba164c8230948c21549") // https://github.com/backslashxx/KernelSU
++	|| check_v2_signature(path, 0x35c, "947ae944f3de4ed4c21a7e4f7953ecf351bfa2b36239da37a34111ad29993eef") // https://github.com/ShirkNeko/SukiSU-Ultra
++	);
+ }
+\ No newline at end of file
+-- 
+2.49.0
+
