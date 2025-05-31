@@ -1,9 +1,6 @@
 name: PDI Kernel
 
 on:
-  push:
-    paths:
-      - ".github/workflows/pdi.yml"
   workflow_dispatch:
     inputs:
       ksu_type:
