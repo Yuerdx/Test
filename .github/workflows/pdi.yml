@@ -176,20 +176,6 @@ jobs:
             patch -p1 < $GITHUB_WORKSPACE/0001-kernel-patch-susfs-to-KernelSU-Next.patch
           fi
 
-      - name: Manager Patch
-        if: ${{ inputs.ksu_type != 'nonksu' }}
-        run: |
-          cd $KERNEL_DIRE/common
-          if [ "${{ inputs.ksu_type }}" = "ksu" ]; then
-            patch -p1 < $GITHUB_WORKSPACE/0001-kernel-add-support-for-more-ksu-manager.patch
-          elif [ "${{ inputs.ksu_type }}" = "ksu-susfs" ]; then
-            patch -p1 < $GITHUB_WORKSPACE/0001-kernel-add-support-for-more-ksu-susfs-manager.patch
-          elif [ "${{ inputs.ksu_type }}" = "ksun" ]; then
-            patch -p1 < $GITHUB_WORKSPACE/0001-kernel-add-support-for-more-ksun-manager.patch
-          elif [ "${{ inputs.ksu_type }}" = "ksun-susfs" ]; then
-            patch -p1 < $GITHUB_WORKSPACE/0001-kernel-add-support-for-more-ksun-susfs-manager.patch
-          fi
-
       - name: Setup Extra
         run: |
           cd $KERNEL_DIRE/common
@@ -237,18 +223,18 @@ jobs:
       - name: Download all artifacts
         uses: actions/download-artifact@v4.3.0
         with:
-          path: ./artifacts
+          path: AnyKernel3
 
       - name: Create Release
         uses: softprops/action-gh-release@v2.2.2
         with:
           name: "PDI Kernel Release - ${{ github.run_number }}"
-          tag_name: "release-${{ github.run_number }}"
+          tag_name: "pdi-${{ github.run_number }}"
           body: |
             KernelSU Variant: `${{ inputs.ksu_type }}`
             Build Number: `${{ github.run_number }}`
             Date: `${{ github.event.head_commit.timestamp || github.event.repository.updated_at }}`
           files: |
-            artifacts/**/*
+            AnyKernel3/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
