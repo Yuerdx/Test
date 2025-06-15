@@ -208,7 +208,6 @@ jobs:
           fi
           cd AnyKernel3/
           rm -rf LICENSE
-          zip -q -r "PDI-${{ env.FULLVER }}${{ env.SUVER }}" *
 
       - name: Upload AnyKernel3
         uses: actions/upload-artifact@v4.6.2
@@ -227,6 +226,13 @@ jobs:
         with:
           path: ./AnyKernel3
 
+      - name: Repack downloaded artifacts
+        run: |
+          shopt -s nullglob
+          for dir in ./AnyKernel3/*/ ; do
+            zip -r "${dir%/}.zip" "$dir"
+          done
+
       - name: Create Release
         uses: softprops/action-gh-release@v2.2.2
         with:
@@ -237,6 +243,6 @@ jobs:
             Build Number: `${{ github.run_number }}`
             Date: `${{ github.event.head_commit.timestamp || github.event.repository.updated_at }}`
           files: |
-            ./AnyKernel3/**/*.zip
+            ./AnyKernel3/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
