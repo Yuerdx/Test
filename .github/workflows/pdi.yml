@@ -223,7 +223,7 @@ jobs:
       - name: Download all artifacts
         uses: actions/download-artifact@v4.3.0
         with:
-          path: AnyKernel3
+          path: ./AnyKernel3
 
       - name: Create Release
         uses: softprops/action-gh-release@v2.2.2
@@ -235,6 +235,6 @@ jobs:
             Build Number: `${{ github.run_number }}`
             Date: `${{ github.event.head_commit.timestamp || github.event.repository.updated_at }}`
           files: |
-            AnyKernel3/*
+            ./AnyKernel3/**/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
