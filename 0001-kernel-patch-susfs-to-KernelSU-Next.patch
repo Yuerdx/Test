@@ -1,7 +1,7 @@
-From f1f20dd74d867aba697318e85891ee3ed06be9eb Mon Sep 17 00:00:00 2001
+From 94b6f145261ebf7d9a44f094204beca946624a9e Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E3=80=86Ei?=
  <197677662+Norikimika@users.noreply.github.com>
-Date: Sat, 14 Jun 2025 23:09:30 +0800
+Date: Sun, 15 Jun 2025 15:06:00 +0800
 Subject: [PATCH] kernel: patch susfs to KernelSU-Next
 
 ---
@@ -179,10 +179,10 @@ index ab6dd5c..f4ab963 100644
 +
  endmenu
 diff --git a/KernelSU-Next/kernel/Makefile b/KernelSU-Next/kernel/Makefile
-index aa380e9..8aa8d6e 100644
+index c19de2d..08d46a6 100644
 --- a/KernelSU-Next/kernel/Makefile
 +++ b/KernelSU-Next/kernel/Makefile
-@@ -150,4 +150,81 @@ endif
+@@ -164,4 +164,81 @@ endif
  ccflags-y += -Wno-implicit-function-declaration -Wno-strict-prototypes -Wno-int-conversion -Wno-gcc-compat
  ccflags-y += -Wno-declaration-after-statement -Wno-unused-function
  
