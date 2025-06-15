@@ -1,7 +1,7 @@
-From 94b6f145261ebf7d9a44f094204beca946624a9e Mon Sep 17 00:00:00 2001
+From 28849620526ccba1e03c4a2c0a814de640e63e1c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E3=80=86Ei?=
  <197677662+Norikimika@users.noreply.github.com>
-Date: Sun, 15 Jun 2025 15:06:00 +0800
+Date: Sun, 15 Jun 2025 18:26:54 +0800
 Subject: [PATCH] kernel: patch susfs to KernelSU-Next
 
 ---

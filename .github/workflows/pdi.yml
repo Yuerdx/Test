@@ -235,6 +235,6 @@ jobs:
             Build Number: `${{ github.run_number }}`
             Date: `${{ github.event.head_commit.timestamp || github.event.repository.updated_at }}`
           files: |
-            ./AnyKernel3/**/*
+            ./AnyKernel3/**/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
